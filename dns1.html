@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerar URL</title>
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+    width: 100%;
+    max-width: 50em;
+}
+
+form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    border-color: #0056b3;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+    word-wrap: break-word;
+}
+
+#copyButton {
+    background-color: #28a745; /* Verde */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+#copyButton:hover {
+    background-color: #218838; /* Verde mais escuro ao passar o mouse */
+}
+
+</style>
+<body>
+    <div class="container">
+        <h2>Insira os dados Warez:</h2>
+
+        <form id="urlForm">
+            <label for="username">Usuário:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Senha:</label>
+            <input type="text" id="password" name="password" required>
+
+            <button type="button" onclick="generateURL()">Gerar URL</button>
+        </form>
+
+        <p id="result"></p>
+
+        <button id="copyButton" style="display: none;" onclick="copyURL()">Copiar URL</button>
+    </div>
+
+    <script>
+        function generateURL() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var baseURL = "http://cdn7.live/get.php?username=USERNAME&password=PASSWORD&type=m3u_plus&output=m3u8";
+            var newURL = baseURL.replace("USERNAME", username).replace("PASSWORD", password);
+            
+            // Exibir a URL gerada
+            document.getElementById("result").innerHTML = "URL Gerada:<br> <a href='" + newURL + "' target='_blank'>" + newURL + "</a>";
+            
+            // Tornar o botão de copiar visível
+            document.getElementById("copyButton").style.display = "inline-block";
+        }
+
+        function copyURL() {
+            var urlText = document.getElementById("result").innerText.replace("URL Gerada: ", "");
+            navigator.clipboard.writeText(urlText).then(function() {
+                alert('URL copiada para a área de transferência!');
+            }).catch(function(err) {
+                alert('Erro ao copiar a URL: ' + err);
+            });
+        }
+    </script>
+</body>
+
+
+</html>
