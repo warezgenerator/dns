@@ -96,7 +96,18 @@ button:hover {
 #copyButton:hover {
     background-color: #218838; /* Verde mais escuro ao passar o mouse */
 }
-
+@media (max-width: 768px) {
+     input[type="text"], input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+    transition: border-color 0.3s ease;
+}
+}
 </style>
 <body>
     <div class="container">
